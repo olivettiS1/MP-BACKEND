@@ -6,7 +6,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 🔴 TU ACCESS TOKEN (como pediste)
 mercadopago.configure({
   access_token: "APP_USR-8720430687315957-040919-2b8830e0b9971cfd11589c388229064a-317126033"
 });
@@ -16,7 +15,6 @@ app.post("/pagar", async (req, res) => {
 
     const { amount, token, payment_method_id, installments, email } = req.body;
 
-    // validación básica
     if (!amount || !token || !payment_method_id || !installments || !email) {
       return res.status(400).json({ error: "Faltan datos" });
     }
@@ -28,7 +26,11 @@ app.post("/pagar", async (req, res) => {
       installments: Number(installments),
       payment_method_id: payment_method_id,
       payer: {
-        email: email
+        email: email,
+        identification: {
+          type: "DNI",
+          number: "12345678"
+        }
       }
     });
 
