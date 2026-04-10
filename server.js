@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 mercadopago.configure({
-  access_token: "APP_USR-8720430687315957-040919-2b8830e0b9971cfd11589c388229064a-317126033"
+  access_token: "APP_USR-7418303304964372-040619-f4e3741d1b3ea8cb029459678a405394-1978066352"
 });
 
 app.post("/pagar", async (req, res) => {
